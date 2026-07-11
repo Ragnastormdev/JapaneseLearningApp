@@ -1,0 +1,57 @@
+[
+  { "id": 1, "character": "あ", "romaji": "a", "type": "HIRAGANA", "displayOrder": 1 },
+  { "id": 2, "character": "い", "romaji": "i", "type": "HIRAGANA", "displayOrder": 2 },
+  { "id": 3, "character": "う", "romaji": "u", "type": "HIRAGANA", "displayOrder": 3 },
+  { "id": 4, "character": "え", "romaji": "e", "type": "HIRAGANA", "displayOrder": 4 },
+  { "id": 5, "character": "お", "romaji": "o", "type": "HIRAGANA", "displayOrder": 5 },
+
+  { "id": 6, "character": "か", "romaji": "ka", "type": "HIRAGANA", "displayOrder": 6 },
+  { "id": 7, "character": "き", "romaji": "ki", "type": "HIRAGANA", "displayOrder": 7 },
+  { "id": 8, "character": "く", "romaji": "ku", "type": "HIRAGANA", "displayOrder": 8 },
+  { "id": 9, "character": "け", "romaji": "ke", "type": "HIRAGANA", "displayOrder": 9 },
+  { "id": 10, "character": "こ", "romaji": "ko", "type": "HIRAGANA", "displayOrder": 10 },
+
+  { "id": 11, "character": "さ", "romaji": "sa", "type": "HIRAGANA", "displayOrder": 11 },
+  { "id": 12, "character": "し", "romaji": "shi", "type": "HIRAGANA", "displayOrder": 12 },
+  { "id": 13, "character": "す", "romaji": "su", "type": "HIRAGANA", "displayOrder": 13 },
+  { "id": 14, "character": "せ", "romaji": "se", "type": "HIRAGANA", "displayOrder": 14 },
+  { "id": 15, "character": "そ", "romaji": "so", "type": "HIRAGANA", "displayOrder": 15 },
+
+  { "id": 16, "character": "た", "romaji": "ta", "type": "HIRAGANA", "displayOrder": 16 },
+  { "id": 17, "character": "ち", "romaji": "chi", "type": "HIRAGANA", "displayOrder": 17 },
+  { "id": 18, "character": "つ", "romaji": "tsu", "type": "HIRAGANA", "displayOrder": 18 },
+  { "id": 19, "character": "て", "romaji": "te", "type": "HIRAGANA", "displayOrder": 19 },
+  { "id": 20, "character": "と", "romaji": "to", "type": "HIRAGANA", "displayOrder": 20 },
+
+  { "id": 21, "character": "な", "romaji": "na", "type": "HIRAGANA", "displayOrder": 21 },
+  { "id": 22, "character": "に", "romaji": "ni", "type": "HIRAGANA", "displayOrder": 22 },
+  { "id": 23, "character": "ぬ", "romaji": "nu", "type": "HIRAGANA", "displayOrder": 23 },
+  { "id": 24, "character": "ね", "romaji": "ne", "type": "HIRAGANA", "displayOrder": 24 },
+  { "id": 25, "character": "の", "romaji": "no", "type": "HIRAGANA", "displayOrder": 25 },
+
+  { "id": 26, "character": "は", "romaji": "ha", "type": "HIRAGANA", "displayOrder": 26 },
+  { "id": 27, "character": "ひ", "romaji": "hi", "type": "HIRAGANA", "displayOrder": 27 },
+  { "id": 28, "character": "ふ", "romaji": "fu", "type": "HIRAGANA", "displayOrder": 28 },
+  { "id": 29, "character": "へ", "romaji": "he", "type": "HIRAGANA", "displayOrder": 29 },
+  { "id": 30, "character": "ほ", "romaji": "ho", "type": "HIRAGANA", "displayOrder": 30 },
+
+  { "id": 31, "character": "ま", "romaji": "ma", "type": "HIRAGANA", "displayOrder": 31 },
+  { "id": 32, "character": "み", "romaji": "mi", "type": "HIRAGANA", "displayOrder": 32 },
+  { "id": 33, "character": "む", "romaji": "mu", "type": "HIRAGANA", "displayOrder": 33 },
+  { "id": 34, "character": "め", "romaji": "me", "type": "HIRAGANA", "displayOrder": 34 },
+  { "id": 35, "character": "も", "romaji": "mo", "type": "HIRAGANA", "displayOrder": 35 },
+
+  { "id": 36, "character": "や", "romaji": "ya", "type": "HIRAGANA", "displayOrder": 36 },
+  { "id": 37, "character": "ゆ", "romaji": "yu", "type": "HIRAGANA", "displayOrder": 37 },
+  { "id": 38, "character": "よ", "romaji": "yo", "type": "HIRAGANA", "displayOrder": 38 },
+
+  { "id": 39, "character": "ら", "romaji": "ra", "type": "HIRAGANA", "displayOrder": 39 },
+  { "id": 40, "character": "り", "romaji": "ri", "type": "HIRAGANA", "displayOrder": 40 },
+  { "id": 41, "character": "る", "romaji": "ru", "type": "HIRAGANA", "displayOrder": 41 },
+  { "id": 42, "character": "れ", "romaji": "re", "type": "HIRAGANA", "displayOrder": 42 },
+  { "id": 43, "character": "ろ", "romaji": "ro", "type": "HIRAGANA", "displayOrder": 43 },
+
+  { "id": 44, "character": "わ", "romaji": "wa", "type": "HIRAGANA", "displayOrder": 44 },
+  { "id": 45, "character": "を", "romaji": "wo", "type": "HIRAGANA", "displayOrder": 45 },
+  { "id": 46, "character": "ん", "romaji": "n", "type": "HIRAGANA", "displayOrder": 46 }
+]

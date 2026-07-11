@@ -1,0 +1,57 @@
+[
+  { "id": 1, "character": "ア", "romaji": "a", "type": "KATAKANA", "displayOrder": 1 },
+  { "id": 2, "character": "イ", "romaji": "i", "type": "KATAKANA", "displayOrder": 2 },
+  { "id": 3, "character": "ウ", "romaji": "u", "type": "KATAKANA", "displayOrder": 3 },
+  { "id": 4, "character": "エ", "romaji": "e", "type": "KATAKANA", "displayOrder": 4 },
+  { "id": 5, "character": "オ", "romaji": "o", "type": "KATAKANA", "displayOrder": 5 },
+
+  { "id": 6, "character": "カ", "romaji": "ka", "type": "KATAKANA", "displayOrder": 6 },
+  { "id": 7, "character": "キ", "romaji": "ki", "type": "KATAKANA", "displayOrder": 7 },
+  { "id": 8, "character": "ク", "romaji": "ku", "type": "KATAKANA", "displayOrder": 8 },
+  { "id": 9, "character": "ケ", "romaji": "ke", "type": "KATAKANA", "displayOrder": 9 },
+  { "id": 10, "character": "コ", "romaji": "ko", "type": "KATAKANA", "displayOrder": 10 },
+
+  { "id": 11, "character": "サ", "romaji": "sa", "type": "KATAKANA", "displayOrder": 11 },
+  { "id": 12, "character": "シ", "romaji": "shi", "type": "KATAKANA", "displayOrder": 12 },
+  { "id": 13, "character": "ス", "romaji": "su", "type": "KATAKANA", "displayOrder": 13 },
+  { "id": 14, "character": "セ", "romaji": "se", "type": "KATAKANA", "displayOrder": 14 },
+  { "id": 15, "character": "ソ", "romaji": "so", "type": "KATAKANA", "displayOrder": 15 },
+
+  { "id": 16, "character": "タ", "romaji": "ta", "type": "KATAKANA", "displayOrder": 16 },
+  { "id": 17, "character": "チ", "romaji": "chi", "type": "KATAKANA", "displayOrder": 17 },
+  { "id": 18, "character": "ツ", "romaji": "tsu", "type": "KATAKANA", "displayOrder": 18 },
+  { "id": 19, "character": "テ", "romaji": "te", "type": "KATAKANA", "displayOrder": 19 },
+  { "id": 20, "character": "ト", "romaji": "to", "type": "KATAKANA", "displayOrder": 20 },
+
+  { "id": 21, "character": "ナ", "romaji": "na", "type": "KATAKANA", "displayOrder": 21 },
+  { "id": 22, "character": "ニ", "romaji": "ni", "type": "KATAKANA", "displayOrder": 22 },
+  { "id": 23, "character": "ヌ", "romaji": "nu", "type": "KATAKANA", "displayOrder": 23 },
+  { "id": 24, "character": "ネ", "romaji": "ne", "type": "KATAKANA", "displayOrder": 24 },
+  { "id": 25, "character": "ノ", "romaji": "no", "type": "KATAKANA", "displayOrder": 25 },
+
+  { "id": 26, "character": "ハ", "romaji": "ha", "type": "KATAKANA", "displayOrder": 26 },
+  { "id": 27, "character": "ヒ", "romaji": "hi", "type": "KATAKANA", "displayOrder": 27 },
+  { "id": 28, "character": "フ", "romaji": "fu", "type": "KATAKANA", "displayOrder": 28 },
+  { "id": 29, "character": "ヘ", "romaji": "he", "type": "KATAKANA", "displayOrder": 29 },
+  { "id": 30, "character": "ホ", "romaji": "ho", "type": "KATAKANA", "displayOrder": 30 },
+
+  { "id": 31, "character": "マ", "romaji": "ma", "type": "KATAKANA", "displayOrder": 31 },
+  { "id": 32, "character": "ミ", "romaji": "mi", "type": "KATAKANA", "displayOrder": 32 },
+  { "id": 33, "character": "ム", "romaji": "mu", "type": "KATAKANA", "displayOrder": 33 },
+  { "id": 34, "character": "メ", "romaji": "me", "type": "KATAKANA", "displayOrder": 34 },
+  { "id": 35, "character": "モ", "romaji": "mo", "type": "KATAKANA", "displayOrder": 35 },
+
+  { "id": 36, "character": "ヤ", "romaji": "ya", "type": "KATAKANA", "displayOrder": 36 },
+  { "id": 37, "character": "ユ", "romaji": "yu", "type": "KATAKANA", "displayOrder": 37 },
+  { "id": 38, "character": "ヨ", "romaji": "yo", "type": "KATAKANA", "displayOrder": 38 },
+
+  { "id": 39, "character": "ラ", "romaji": "ra", "type": "KATAKANA", "displayOrder": 39 },
+  { "id": 40, "character": "リ", "romaji": "ri", "type": "KATAKANA", "displayOrder": 40 },
+  { "id": 41, "character": "ル", "romaji": "ru", "type": "KATAKANA", "displayOrder": 41 },
+  { "id": 42, "character": "レ", "romaji": "re", "type": "KATAKANA", "displayOrder": 42 },
+  { "id": 43, "character": "ロ", "romaji": "ro", "type": "KATAKANA", "displayOrder": 43 },
+
+  { "id": 44, "character": "ワ", "romaji": "wa", "type": "KATAKANA", "displayOrder": 44 },
+  { "id": 45, "character": "ヲ", "romaji": "wo", "type": "KATAKANA", "displayOrder": 45 },
+  { "id": 46, "character": "ン", "romaji": "n", "type": "KATAKANA", "displayOrder": 46 }
+]
