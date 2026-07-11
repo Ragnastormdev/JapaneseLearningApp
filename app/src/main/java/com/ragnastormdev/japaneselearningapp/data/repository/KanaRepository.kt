@@ -18,4 +18,10 @@ class KanaRepository @Inject constructor(
     suspend fun insertAll(kana: List<KanaEntity>) {
         kanaDao.insertAll(kana)
     }
+    suspend fun getCount(): Int {
+        return kanaDao.getCount()
+    }
+    fun observeCount(): Flow<Int> {
+        return kanaDao.observeCount()
+    }
 }

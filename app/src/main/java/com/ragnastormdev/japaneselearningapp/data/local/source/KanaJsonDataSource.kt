@@ -16,6 +16,9 @@ class KanaJsonDataSource @Inject constructor(
 
     fun loadKatakana(): List<KanaEntity> {
         return loadKanaFromFile("katakana.json")
+            .map { kana ->
+                kana.copy(id = kana.id + 1000)
+            }
     }
 
     private fun loadKanaFromFile(fileName: String): List<KanaEntity> {

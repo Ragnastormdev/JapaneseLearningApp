@@ -21,4 +21,8 @@ interface KanaDao {
         """
     )
     fun getKanaByType(type: String): Flow<List<KanaEntity>>
+    @Query("SELECT COUNT(*) FROM kana")
+    suspend fun getCount(): Int
+    @Query("SELECT COUNT(*) FROM kana")
+    fun observeCount(): Flow<Int>
 }
