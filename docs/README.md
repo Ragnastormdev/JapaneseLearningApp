@@ -1,4 +1,4 @@
-# Applijap
+# JapaneseLearningApp
 appli pour apprendre le japonais
 # JapaneseLearningApp
 
