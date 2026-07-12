@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class KanaDetailUiState(
@@ -20,7 +21,7 @@ data class KanaDetailUiState(
 
 @HiltViewModel
 class KanaDetailViewModel @Inject constructor(
-    kanaRepository: KanaRepository,
+    private val kanaRepository: KanaRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -53,11 +54,15 @@ class KanaDetailViewModel @Inject constructor(
     ) { hiraganaList, katakanaList, kanaId ->
 
         val kanaList = when {
-            hiraganaList.any { kana -> kana.id == kanaId } -> {
+            hiraganaList.any { kana ->
+                kana.id == kanaId
+            } -> {
                 hiraganaList
             }
 
-            katakanaList.any { kana -> kana.id == kanaId } -> {
+            katakanaList.any { kana ->
+                kana.id == kanaId
+            } -> {
                 katakanaList
             }
 
@@ -94,6 +99,17 @@ class KanaDetailViewModel @Inject constructor(
     fun showNextKana() {
         uiState.value.nextKanaId?.let { nextId ->
             selectedKanaId.value = nextId
+        }
+    }
+
+    fun toggleKnownStatus() {
+        val currentKana = uiState.value.kana ?: return
+
+        viewModelScope.launch {
+            kanaRepository.updateKnownStatus(
+                kanaId = currentKana.id,
+                isKnown = !currentKana.isKnown
+            )
         }
     }
 }

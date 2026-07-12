@@ -221,6 +221,33 @@ fun KanaDetailScreen(
             modifier = Modifier.height(12.dp)
         )
 
+        Button(
+            onClick = {
+                viewModel.toggleKnownStatus()
+            },
+            modifier = Modifier.fillMaxWidth(),
+            colors = if (kana.isKnown) {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                )
+            } else {
+                ButtonDefaults.buttonColors()
+            }
+        ) {
+            Text(
+                text = if (kana.isKnown) {
+                    "✓ Je connais"
+                } else {
+                    "Marquer comme connu"
+                }
+            )
+        }
+
+        Spacer(
+            modifier = Modifier.height(12.dp)
+        )
+
         OutlinedButton(
             onClick = {
                 audioPlayer.play(kana.romaji)

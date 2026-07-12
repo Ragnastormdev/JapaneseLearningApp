@@ -20,6 +20,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -51,6 +52,10 @@ fun HomeScreen(
     val hiragana by viewModel.hiragana.collectAsState()
     val katakana by viewModel.katakana.collectAsState()
 
+    val knownHiraganaCount by viewModel.knownHiraganaCount.collectAsState()
+    val knownKatakanaCount by viewModel.knownKatakanaCount.collectAsState()
+    val totalKnownCount by viewModel.totalKnownCount.collectAsState()
+
     var selectedAlphabet by rememberSaveable {
         mutableStateOf<SelectedAlphabet?>(null)
     }
@@ -58,6 +63,12 @@ fun HomeScreen(
     when (selectedAlphabet) {
         null -> {
             AlphabetSelectionScreen(
+                hiraganaKnownCount = knownHiraganaCount,
+                hiraganaTotalCount = hiragana.size,
+                katakanaKnownCount = knownKatakanaCount,
+                katakanaTotalCount = katakana.size,
+                totalKnownCount = totalKnownCount,
+                totalKanaCount = hiragana.size + katakana.size,
                 onHiraganaClick = {
                     selectedAlphabet = SelectedAlphabet.HIRAGANA
                 },
@@ -71,6 +82,7 @@ fun HomeScreen(
             KanaGridScreen(
                 title = "Hiragana",
                 kanaList = hiragana,
+                knownCount = knownHiraganaCount,
                 onKanaClick = onKanaClick,
                 onBackClick = {
                     selectedAlphabet = null
@@ -82,6 +94,7 @@ fun HomeScreen(
             KanaGridScreen(
                 title = "Katakana",
                 kanaList = katakana,
+                knownCount = knownKatakanaCount,
                 onKanaClick = onKanaClick,
                 onBackClick = {
                     selectedAlphabet = null
@@ -93,9 +106,20 @@ fun HomeScreen(
 
 @Composable
 private fun AlphabetSelectionScreen(
+    hiraganaKnownCount: Int,
+    hiraganaTotalCount: Int,
+    katakanaKnownCount: Int,
+    katakanaTotalCount: Int,
+    totalKnownCount: Int,
+    totalKanaCount: Int,
     onHiraganaClick: () -> Unit,
     onKatakanaClick: () -> Unit
 ) {
+    val totalProgress = calculateProgress(
+        knownCount = totalKnownCount,
+        totalCount = totalKanaCount
+    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -123,20 +147,40 @@ private fun AlphabetSelectionScreen(
         )
 
         Spacer(
-            modifier = Modifier.height(40.dp)
+            modifier = Modifier.height(32.dp)
+        )
+
+        ProgressSection(
+            label = "Progression totale",
+            knownCount = totalKnownCount,
+            totalCount = totalKanaCount,
+            progress = totalProgress
+        )
+
+        Spacer(
+            modifier = Modifier.height(32.dp)
         )
 
         Button(
             onClick = onHiraganaClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp),
+                .height(72.dp),
             shape = RoundedCornerShape(16.dp)
         ) {
-            Text(
-                text = "Hiragana",
-                style = MaterialTheme.typography.titleLarge
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Hiragana",
+                    style = MaterialTheme.typography.titleLarge
+                )
+
+                Text(
+                    text = "$hiraganaKnownCount / $hiraganaTotalCount connus",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
 
         Spacer(
@@ -147,13 +191,22 @@ private fun AlphabetSelectionScreen(
             onClick = onKatakanaClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp),
+                .height(72.dp),
             shape = RoundedCornerShape(16.dp)
         ) {
-            Text(
-                text = "Katakana",
-                style = MaterialTheme.typography.titleLarge
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Katakana",
+                    style = MaterialTheme.typography.titleLarge
+                )
+
+                Text(
+                    text = "$katakanaKnownCount / $katakanaTotalCount connus",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
     }
 }
@@ -162,11 +215,17 @@ private fun AlphabetSelectionScreen(
 private fun KanaGridScreen(
     title: String,
     kanaList: List<KanaEntity>,
+    knownCount: Int,
     onKanaClick: (Int) -> Unit,
     onBackClick: () -> Unit
 ) {
     val outlinedButtonColors = ButtonDefaults.outlinedButtonColors(
         contentColor = MaterialTheme.colorScheme.primary
+    )
+
+    val progress = calculateProgress(
+        knownCount = knownCount,
+        totalCount = kanaList.size
     )
 
     Column(
@@ -180,11 +239,23 @@ private fun KanaGridScreen(
                 .fillMaxWidth()
                 .padding(
                     top = 32.dp,
-                    bottom = 16.dp
+                    bottom = 12.dp
                 ),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold
+        )
+
+        ProgressSection(
+            label = "Progression",
+            knownCount = knownCount,
+            totalCount = kanaList.size,
+            progress = progress,
+            modifier = Modifier.padding(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 16.dp
+            )
         )
 
         OutlinedButton(
@@ -228,6 +299,40 @@ private fun KanaGridScreen(
 }
 
 @Composable
+private fun ProgressSection(
+    label: String,
+    knownCount: Int,
+    totalCount: Int,
+    progress: Float,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = "$label : $knownCount / $totalCount",
+            modifier = Modifier.fillMaxWidth(),
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
+
+        LinearProgressIndicator(
+            progress = {
+                progress
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+        )
+    }
+}
+
+@Composable
 private fun KanaCard(
     kana: KanaEntity,
     onClick: () -> Unit
@@ -242,7 +347,11 @@ private fun KanaCard(
             defaultElevation = 4.dp
         ),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = if (kana.isKnown) {
+                MaterialTheme.colorScheme.secondaryContainer
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            }
         )
     ) {
         Box(
@@ -262,7 +371,27 @@ private fun KanaCard(
                     text = kana.romaji,
                     style = MaterialTheme.typography.bodySmall
                 )
+
+                if (kana.isKnown) {
+                    Text(
+                        text = "✓",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
             }
         }
     }
+}
+
+private fun calculateProgress(
+    knownCount: Int,
+    totalCount: Int
+): Float {
+    if (totalCount == 0) {
+        return 0f
+    }
+
+    return knownCount.toFloat() / totalCount.toFloat()
 }

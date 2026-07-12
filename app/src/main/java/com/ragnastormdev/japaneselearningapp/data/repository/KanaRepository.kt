@@ -19,6 +19,24 @@ class KanaRepository @Inject constructor(
         return kanaDao.getKanaById(id)
     }
 
+    suspend fun updateKnownStatus(
+        kanaId: Int,
+        isKnown: Boolean
+    ) {
+        kanaDao.updateKnownStatus(
+            kanaId = kanaId,
+            isKnown = isKnown
+        )
+    }
+
+    fun observeKnownCountByType(type: String): Flow<Int> {
+        return kanaDao.observeKnownCountByType(type)
+    }
+
+    fun observeTotalKnownCount(): Flow<Int> {
+        return kanaDao.observeTotalKnownCount()
+    }
+
     suspend fun insertAll(kana: List<KanaEntity>) {
         kanaDao.insertAll(kana)
     }

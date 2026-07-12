@@ -40,6 +40,30 @@ class HomeViewModel @Inject constructor(
             initialValue = emptyList<KanaEntity>()
         )
 
+    val knownHiraganaCount =
+        kanaRepository.observeKnownCountByType("HIRAGANA")
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = 0
+            )
+
+    val knownKatakanaCount =
+        kanaRepository.observeKnownCountByType("KATAKANA")
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = 0
+            )
+
+    val totalKnownCount =
+        kanaRepository.observeTotalKnownCount()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = 0
+            )
+
     init {
         initializeKanaDatabase()
     }

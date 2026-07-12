@@ -10,5 +10,6 @@ data class KanaEntity(
     val character: String,
     val romaji: String,
     val type: String,
-    val displayOrder: Int
+    val displayOrder: Int,
+    val isKnown: Boolean = false
 )

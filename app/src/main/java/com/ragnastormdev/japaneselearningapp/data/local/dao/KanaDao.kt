@@ -31,6 +31,35 @@ interface KanaDao {
     )
     fun getKanaById(id: Int): Flow<KanaEntity?>
 
+    @Query(
+        """
+        UPDATE kana
+        SET isKnown = :isKnown
+        WHERE id = :kanaId
+        """
+    )
+    suspend fun updateKnownStatus(
+        kanaId: Int,
+        isKnown: Boolean
+    )
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM kana
+        WHERE type = :type
+        AND isKnown = 1
+        """
+    )
+    fun observeKnownCountByType(type: String): Flow<Int>
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM kana
+        WHERE isKnown = 1
+        """
+    )
+    fun observeTotalKnownCount(): Flow<Int>
+
     @Query("SELECT COUNT(*) FROM kana")
     suspend fun getCount(): Int
 
