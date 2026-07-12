@@ -33,6 +33,13 @@ class HomeViewModel @Inject constructor(
             initialValue = emptyList<KanaEntity>()
         )
 
+    val katakana = kanaRepository.getKanaByType("KATAKANA")
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = emptyList<KanaEntity>()
+        )
+
     init {
         initializeKanaDatabase()
     }

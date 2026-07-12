@@ -38,10 +38,33 @@ class KanaDetailViewModel @Inject constructor(
             initialValue = emptyList()
         )
 
+    private val katakana = kanaRepository
+        .getKanaByType("KATAKANA")
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = emptyList()
+        )
+
     val uiState = combine(
         hiragana,
+        katakana,
         selectedKanaId
-    ) { kanaList, kanaId ->
+    ) { hiraganaList, katakanaList, kanaId ->
+
+        val kanaList = when {
+            hiraganaList.any { kana -> kana.id == kanaId } -> {
+                hiraganaList
+            }
+
+            katakanaList.any { kana -> kana.id == kanaId } -> {
+                katakanaList
+            }
+
+            else -> {
+                emptyList()
+            }
+        }
 
         val currentIndex = kanaList.indexOfFirst { kana ->
             kana.id == kanaId
