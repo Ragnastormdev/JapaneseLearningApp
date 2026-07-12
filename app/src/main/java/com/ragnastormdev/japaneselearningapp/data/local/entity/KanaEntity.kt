@@ -11,5 +11,8 @@ data class KanaEntity(
     val romaji: String,
     val type: String,
     val displayOrder: Int,
-    val isKnown: Boolean = false
+    val isKnown: Boolean = false,
+    val nextReviewAt: Long? = null,
+    val successfulReviewCount: Int = 0,
+    val reviewIntervalDays: Int = 0
 )

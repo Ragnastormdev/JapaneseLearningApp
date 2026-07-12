@@ -6,10 +6,10 @@ import com.ragnastormdev.japaneselearningapp.data.local.entity.KanaEntity
 import com.ragnastormdev.japaneselearningapp.data.local.source.KanaJsonDataSource
 import com.ragnastormdev.japaneselearningapp.data.repository.KanaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -18,6 +18,9 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val title = "Accueil"
+
+    private val currentTime =
+        System.currentTimeMillis()
 
     val kanaCount = kanaRepository.observeCount()
         .stateIn(
@@ -64,6 +67,26 @@ class HomeViewModel @Inject constructor(
                 initialValue = 0
             )
 
+    val dueHiraganaCount =
+        kanaRepository.observeDueKanaCountByType(
+            type = "HIRAGANA",
+            currentTime = currentTime
+        ).stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = 0
+        )
+
+    val dueKatakanaCount =
+        kanaRepository.observeDueKanaCountByType(
+            type = "KATAKANA",
+            currentTime = currentTime
+        ).stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = 0
+        )
+
     init {
         initializeKanaDatabase()
     }
@@ -71,8 +94,9 @@ class HomeViewModel @Inject constructor(
     private fun initializeKanaDatabase() {
         viewModelScope.launch {
             if (kanaRepository.getCount() == 0) {
-                val kana = kanaJsonDataSource.loadHiragana() +
-                        kanaJsonDataSource.loadKatakana()
+                val kana =
+                    kanaJsonDataSource.loadHiragana() +
+                            kanaJsonDataSource.loadKatakana()
 
                 kanaRepository.insertAll(kana)
             }

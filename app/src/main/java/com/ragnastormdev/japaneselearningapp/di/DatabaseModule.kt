@@ -26,7 +26,8 @@ object DatabaseModule {
             "japanese_learning_database"
         )
             .addMigrations(
-                AppDatabase.MIGRATION_1_2
+                AppDatabase.MIGRATION_1_2,
+                AppDatabase.MIGRATION_2_3
             )
             .build()
     }

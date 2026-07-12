@@ -2,9 +2,9 @@ package com.ragnastormdev.japaneselearningapp.data.repository
 
 import com.ragnastormdev.japaneselearningapp.data.local.dao.KanaDao
 import com.ragnastormdev.japaneselearningapp.data.local.entity.KanaEntity
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.Flow
 
 @Singleton
 class KanaRepository @Inject constructor(
@@ -26,6 +26,42 @@ class KanaRepository @Inject constructor(
         kanaDao.updateKnownStatus(
             kanaId = kanaId,
             isKnown = isKnown
+        )
+    }
+
+    suspend fun updateReviewProgress(
+        kanaId: Int,
+        isKnown: Boolean,
+        nextReviewAt: Long?,
+        successfulReviewCount: Int,
+        reviewIntervalDays: Int
+    ) {
+        kanaDao.updateReviewProgress(
+            kanaId = kanaId,
+            isKnown = isKnown,
+            nextReviewAt = nextReviewAt,
+            successfulReviewCount = successfulReviewCount,
+            reviewIntervalDays = reviewIntervalDays
+        )
+    }
+
+    fun getDueKanaByType(
+        type: String,
+        currentTime: Long
+    ): Flow<List<KanaEntity>> {
+        return kanaDao.getDueKanaByType(
+            type = type,
+            currentTime = currentTime
+        )
+    }
+
+    fun observeDueKanaCountByType(
+        type: String,
+        currentTime: Long
+    ): Flow<Int> {
+        return kanaDao.observeDueKanaCountByType(
+            type = type,
+            currentTime = currentTime
         )
     }
 

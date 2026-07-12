@@ -45,6 +45,51 @@ interface KanaDao {
 
     @Query(
         """
+        UPDATE kana
+        SET isKnown = :isKnown,
+            nextReviewAt = :nextReviewAt,
+            successfulReviewCount = :successfulReviewCount,
+            reviewIntervalDays = :reviewIntervalDays
+        WHERE id = :kanaId
+        """
+    )
+    suspend fun updateReviewProgress(
+        kanaId: Int,
+        isKnown: Boolean,
+        nextReviewAt: Long?,
+        successfulReviewCount: Int,
+        reviewIntervalDays: Int
+    )
+
+    @Query(
+        """
+        SELECT * FROM kana
+        WHERE type = :type
+        AND nextReviewAt IS NOT NULL
+        AND nextReviewAt <= :currentTime
+        ORDER BY nextReviewAt ASC, displayOrder ASC
+        """
+    )
+    fun getDueKanaByType(
+        type: String,
+        currentTime: Long
+    ): Flow<List<KanaEntity>>
+
+    @Query(
+        """
+        SELECT COUNT(*) FROM kana
+        WHERE type = :type
+        AND nextReviewAt IS NOT NULL
+        AND nextReviewAt <= :currentTime
+        """
+    )
+    fun observeDueKanaCountByType(
+        type: String,
+        currentTime: Long
+    ): Flow<Int>
+
+    @Query(
+        """
         SELECT COUNT(*) FROM kana
         WHERE type = :type
         AND isKnown = 1
